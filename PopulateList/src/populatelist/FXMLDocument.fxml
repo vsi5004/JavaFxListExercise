@@ -15,5 +15,6 @@
       <TextField fx:id="tfLastName" layoutX="211.0" layoutY="316.0" />
       <Label layoutX="43.0" layoutY="348.0" prefHeight="17.0" prefWidth="65.0" text="First Name" />
       <Label layoutX="211.0" layoutY="348.0" text="Last Name" />
+      <Button fx:id="btnAddPerson" layoutX="43.0" layoutY="383.0" mnemonicParsing="false" onMouseClicked="#handleBtnAddPersonClicked" text="Add" />
   </children>
 </AnchorPane>
