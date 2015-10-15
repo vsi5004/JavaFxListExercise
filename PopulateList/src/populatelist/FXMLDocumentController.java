@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import populatelist.exceptions.NonexistentEntityException;
 
 /**
  *
@@ -85,15 +86,26 @@ public class FXMLDocumentController implements Initializable {
         List<Person> people = jpaPerson.findPersonEntities();
         // Add each person to the list
         for (Person p : people) {
-            String fullName = p.getFirstName() + " " + p.getLastName();
+            String fullName = p.getId() + ": " + p.getFirstName() + " " + p.getLastName();
             lvPeople.getItems().add(fullName);
+            
         }
     }
 
     @FXML
     private void handleBtnDeletePersonClicked(MouseEvent event) {
         String selectedText = lvPeople.getSelectionModel().getSelectedItem();
-        System.out.println("Delete " + selectedText);
+        Integer personId = Integer.parseInt(selectedText.split(":")[0]);
+        System.out.println("Delete " + personId);
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PopulateListPU");
+        PersonJpaController jpaPerson;
+        jpaPerson = new PersonJpaController(emf);
+        try {
+            jpaPerson.destroy(personId);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }
