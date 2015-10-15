@@ -40,6 +40,8 @@ public class FXMLDocumentController implements Initializable {
     private TextField tfLastName;
     @FXML
     private Button btnAddPerson;
+    @FXML
+    private Button btnDelete;
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -86,6 +88,11 @@ public class FXMLDocumentController implements Initializable {
             String fullName = p.getFirstName() + " " + p.getLastName();
             lvPeople.getItems().add(fullName);
         }
+    }
+
+    @FXML
+    private void handleBtnDeletePersonClicked(MouseEvent event) {
+    
     }
 }
 
