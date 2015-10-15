@@ -105,6 +105,6 @@ public class FXMLDocumentController implements Initializable {
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        SyncPeopleListView();
     }
 }
