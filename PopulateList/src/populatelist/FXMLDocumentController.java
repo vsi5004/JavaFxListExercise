@@ -66,6 +66,7 @@ public class FXMLDocumentController implements Initializable {
 
         try {
             jpaPerson.create(newPerson);
+            SyncPeopleListView();
         } catch (Exception ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -102,9 +103,10 @@ public class FXMLDocumentController implements Initializable {
         jpaPerson = new PersonJpaController(emf);
         try {
             jpaPerson.destroy(personId);
+            SyncPeopleListView();
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        SyncPeopleListView();
+        
     }
 }
